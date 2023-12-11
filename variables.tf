@@ -25,3 +25,15 @@ variable "sg_ingress_ports" {
   type        = list(any)
 
 }
+
+variable "ami_id" {
+
+  description = "Ami id for the instance"
+  type = string
+
+}
+
+variable "itype" {
+
+
+}

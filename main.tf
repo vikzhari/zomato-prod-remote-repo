@@ -31,3 +31,15 @@ resource "aws_security_group_rule" "sg_rules" {
   ipv6_cidr_blocks  = ["::/0"]
 
 }
+
+resource "aws_instance" "zomato_frontend" {
+ 
+  key_name = aws_key_pair.auth_key.key_name
+  ami = var.ami_id
+  instance_type = var.itype
+  vpc_security_group_ids = [aws_security_group.sg_webserver_access.id]
+  tags = {
+   Name = "${var.project_name}-${var.project_env}"   
+}
+
+}
