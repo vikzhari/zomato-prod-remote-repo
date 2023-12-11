@@ -33,13 +33,23 @@ resource "aws_security_group_rule" "sg_rules" {
 }
 
 resource "aws_instance" "zomato_frontend" {
- 
-  key_name = aws_key_pair.auth_key.key_name
-  ami = var.ami_id
-  instance_type = var.itype
+
+  key_name               = aws_key_pair.auth_key.key_name
+  ami                    = var.ami_id
+  instance_type          = var.itype
   vpc_security_group_ids = [aws_security_group.sg_webserver_access.id]
   tags = {
-   Name = "${var.project_name}-${var.project_env}"   
+    Name = "${var.project_name}-${var.project_env}"
+  }
+
 }
+
+resource "aws_route53_record" "zomato_record" {
+
+  zone_id = data.aws_route53_zone.azone.id
+  name    = "${var.hostname}.${var.domain_name}"
+  type    = "A"
+  ttl     = 120
+  records = [aws_instance.zomato_frontend.public_ip]
 
 }

@@ -29,11 +29,26 @@ variable "sg_ingress_ports" {
 variable "ami_id" {
 
   description = "Ami id for the instance"
-  type = string
+  type        = string
 
 }
 
 variable "itype" {
 
+  description = "Instance type"
+  type        = string
+
+}
+
+variable "hostname" {
+
+  description = "Hostname part of FQDN"
+  type        = string
+}
+
+variable "domain_name" {
+
+  description = "Domain name"
+  type        = string
 
 }
