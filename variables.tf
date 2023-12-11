@@ -18,3 +18,10 @@ variable "project_env" {
   type        = string
 
 }
+
+variable "sg_ingress_ports" {
+
+  description = "Allowed ingress ports in security group"
+  type        = list(any)
+
+}
